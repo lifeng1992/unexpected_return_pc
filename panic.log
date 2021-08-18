@@ -1,0 +1,109 @@
+go run -gcflags=-trimpath=$(PWD) -asmflags=-trimpath=$(PWD) .
+
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:   export GIN_MODE=release
+ - using code:  gin.SetMode(gin.ReleaseMode)
+
+fatal error: unexpected signal during runtime execution
+[signal SIGSEGV: segmentation violation code=0x1 addr=0xb01dfacedebac1e pc=0x7fff20392c9e]
+
+runtime stack:
+runtime: unexpected return pc for runtime.sigpanic called from 0x7fff20392c9e
+stack: frame={sp:0x7ffeefbfef48, fp:0x7ffeefbfef98} stack=[0x7ffeefb7ffe8,0x7ffeefbff050)
+0x00007ffeefbfee48:  0x01007ffeefbfee68  0x0000000000000004 
+0x00007ffeefbfee58:  0x000000000000001f  0x00007fff20392c9e 
+0x00007ffeefbfee68:  0x0b01dfacedebac1e  0x0000000000000001 
+0x00007ffeefbfee78:  0x00000000040369f1 <runtime.throw+0x0000000000000071>  0x00007ffeefbfef18 
+0x00007ffeefbfee88:  0x00000000046bdb68  0x00007ffeefbfeed0 
+0x00007ffeefbfee98:  0x0000000004036ca8 <runtime.fatalthrow.func1+0x0000000000000048>  0x0000000004b0d3e0 
+0x00007ffeefbfeea8:  0x0000000000000001  0x0000000000000001 
+0x00007ffeefbfeeb8:  0x00007ffeefbfef18  0x00000000040369f1 <runtime.throw+0x0000000000000071> 
+0x00007ffeefbfeec8:  0x0000000004b0d3e0  0x00007ffeefbfef08 
+0x00007ffeefbfeed8:  0x0000000004036c30 <runtime.fatalthrow+0x0000000000000050>  0x00007ffeefbfeee8 
+0x00007ffeefbfeee8:  0x0000000004036c60 <runtime.fatalthrow.func1+0x0000000000000000>  0x0000000004b0d3e0 
+0x00007ffeefbfeef8:  0x00000000040369f1 <runtime.throw+0x0000000000000071>  0x00007ffeefbfef18 
+0x00007ffeefbfef08:  0x00007ffeefbfef38  0x00000000040369f1 <runtime.throw+0x0000000000000071> 
+0x00007ffeefbfef18:  0x00007ffeefbfef20  0x0000000004036a20 <runtime.throw.func1+0x0000000000000000> 
+0x00007ffeefbfef28:  0x00000000046c4efc  0x000000000000002a 
+0x00007ffeefbfef38:  0x00007ffeefbfef88  0x000000000404bff6 <runtime.sigpanic+0x0000000000000396> 
+0x00007ffeefbfef48: <0x00000000046c4efc  0x0000000004b0d3e0 
+0x00007ffeefbfef58:  0x00007ffeefbfefc8  0x0000000004029906 <runtime.(*mheap).allocSpan+0x0000000000000546> 
+0x00007ffeefbfef68:  0x000000c0003f8000  0x0000000000002000 
+0x00007ffeefbfef78:  0x000000c000000008  0x00000000040a9fc0 <syscall.libc_write_trampoline+0x0000000000000000> 
+0x00007ffeefbfef88:  0x00007ffeefbfefd0 !0x00007fff20392c9e 
+0x00007ffeefbfef98: >0x00007ffeefbfefd0  0x0000000004aa4000 
+0x00007ffeefbfefa8:  0x00000000000004f3  0x000000000446fc45 <golang.org/x/sys/unix.libc_ioctl_trampoline+0x0000000000000005> 
+0x00007ffeefbfefb8:  0x000000000406895f <runtime.syscall+0x000000000000001f>  0x000000c00021fdb8 
+0x00007ffeefbfefc8:  0x00007ffeefbff010  0x000000c00021fd88 
+0x00007ffeefbfefd8:  0x00000000040667d0 <runtime.asmcgocall+0x0000000000000070>  0x0000000000000001 
+0x00007ffeefbfefe8:  0x0000000004012000 <runtime.mapdelete+0x0000000000000160>  0x2000000000001018 
+0x00007ffeefbfeff8:  0x0000000000000000  0x0000000004b427b8 
+0x00007ffeefbff008:  0x00000000000002a0  0x000000c0000001a0 
+0x00007ffeefbff018:  0x00000000040648e9 <runtime.systemstack+0x0000000000000049>  0x0000000000000004 
+0x00007ffeefbff028:  0x0000000004760810  0x0000000004b0d3e0 
+0x00007ffeefbff038:  0x00007ffeefbff080  0x00000000040647e5 <runtime.mstart+0x0000000000000005> 
+0x00007ffeefbff048:  0x000000000406479d <runtime.rt0_go+0x000000000000013d> 
+runtime.throw({0x46c4efc, 0x4b0d3e0})
+        /usr/local/go/src/runtime/panic.go:1198 +0x71
+runtime: unexpected return pc for runtime.sigpanic called from 0x7fff20392c9e
+stack: frame={sp:0x7ffeefbfef48, fp:0x7ffeefbfef98} stack=[0x7ffeefb7ffe8,0x7ffeefbff050)
+0x00007ffeefbfee48:  0x01007ffeefbfee68  0x0000000000000004 
+0x00007ffeefbfee58:  0x000000000000001f  0x00007fff20392c9e 
+0x00007ffeefbfee68:  0x0b01dfacedebac1e  0x0000000000000001 
+0x00007ffeefbfee78:  0x00000000040369f1 <runtime.throw+0x0000000000000071>  0x00007ffeefbfef18 
+0x00007ffeefbfee88:  0x00000000046bdb68  0x00007ffeefbfeed0 
+0x00007ffeefbfee98:  0x0000000004036ca8 <runtime.fatalthrow.func1+0x0000000000000048>  0x0000000004b0d3e0 
+0x00007ffeefbfeea8:  0x0000000000000001  0x0000000000000001 
+0x00007ffeefbfeeb8:  0x00007ffeefbfef18  0x00000000040369f1 <runtime.throw+0x0000000000000071> 
+0x00007ffeefbfeec8:  0x0000000004b0d3e0  0x00007ffeefbfef08 
+0x00007ffeefbfeed8:  0x0000000004036c30 <runtime.fatalthrow+0x0000000000000050>  0x00007ffeefbfeee8 
+0x00007ffeefbfeee8:  0x0000000004036c60 <runtime.fatalthrow.func1+0x0000000000000000>  0x0000000004b0d3e0 
+0x00007ffeefbfeef8:  0x00000000040369f1 <runtime.throw+0x0000000000000071>  0x00007ffeefbfef18 
+0x00007ffeefbfef08:  0x00007ffeefbfef38  0x00000000040369f1 <runtime.throw+0x0000000000000071> 
+0x00007ffeefbfef18:  0x00007ffeefbfef20  0x0000000004036a20 <runtime.throw.func1+0x0000000000000000> 
+0x00007ffeefbfef28:  0x00000000046c4efc  0x000000000000002a 
+0x00007ffeefbfef38:  0x00007ffeefbfef88  0x000000000404bff6 <runtime.sigpanic+0x0000000000000396> 
+0x00007ffeefbfef48: <0x00000000046c4efc  0x0000000004b0d3e0 
+0x00007ffeefbfef58:  0x00007ffeefbfefc8  0x0000000004029906 <runtime.(*mheap).allocSpan+0x0000000000000546> 
+0x00007ffeefbfef68:  0x000000c0003f8000  0x0000000000002000 
+0x00007ffeefbfef78:  0x000000c000000008  0x00000000040a9fc0 <syscall.libc_write_trampoline+0x0000000000000000> 
+0x00007ffeefbfef88:  0x00007ffeefbfefd0 !0x00007fff20392c9e 
+0x00007ffeefbfef98: >0x00007ffeefbfefd0  0x0000000004aa4000 
+0x00007ffeefbfefa8:  0x00000000000004f3  0x000000000446fc45 <golang.org/x/sys/unix.libc_ioctl_trampoline+0x0000000000000005> 
+0x00007ffeefbfefb8:  0x000000000406895f <runtime.syscall+0x000000000000001f>  0x000000c00021fdb8 
+0x00007ffeefbfefc8:  0x00007ffeefbff010  0x000000c00021fd88 
+0x00007ffeefbfefd8:  0x00000000040667d0 <runtime.asmcgocall+0x0000000000000070>  0x0000000000000001 
+0x00007ffeefbfefe8:  0x0000000004012000 <runtime.mapdelete+0x0000000000000160>  0x2000000000001018 
+0x00007ffeefbfeff8:  0x0000000000000000  0x0000000004b427b8 
+0x00007ffeefbff008:  0x00000000000002a0  0x000000c0000001a0 
+0x00007ffeefbff018:  0x00000000040648e9 <runtime.systemstack+0x0000000000000049>  0x0000000000000004 
+0x00007ffeefbff028:  0x0000000004760810  0x0000000004b0d3e0 
+0x00007ffeefbff038:  0x00007ffeefbff080  0x00000000040647e5 <runtime.mstart+0x0000000000000005> 
+0x00007ffeefbff048:  0x000000000406479d <runtime.rt0_go+0x000000000000013d> 
+runtime.sigpanic()
+        /usr/local/go/src/runtime/signal_unix.go:719 +0x396
+
+goroutine 1 [syscall]:
+syscall.syscall(0x446fc40, 0x1, 0x40487413, 0xc00021fe48)
+        /usr/local/go/src/runtime/sys_darwin.go:22 +0x3b fp=0xc00021fdb8 sp=0xc00021fd98 pc=0x406341b
+syscall.syscall(0x40a4d86, 0x400fff4, 0xc00021fe70, 0x40a4cb8)
+        <autogenerated>:1 +0x26 fp=0xc00021fe00 sp=0xc00021fdb8 pc=0x4069126
+golang.org/x/sys/unix.ioctl(0x46ac42d, 0x4, 0x1000000000030)
+        /Users/bamcop/go/pkg/mod/golang.org/x/sys@v0.0.0-20200116001909-b77594299b42/unix/zsyscall_darwin_amd64.go:746 +0x39 fp=0xc00021fe30 sp=0xc00021fe00 pc=0x446f8d9
+golang.org/x/sys/unix.IoctlGetTermios(...)
+        /Users/bamcop/go/pkg/mod/golang.org/x/sys@v0.0.0-20200116001909-b77594299b42/unix/ioctl.go:63
+github.com/mattn/go-isatty.IsTerminal(0x46ac42d)
+        /Users/bamcop/go/pkg/mod/github.com/mattn/go-isatty@v0.0.13/isatty_bsd.go:10 +0x50 fp=0xc00021fea0 sp=0xc00021fe30 pc=0x446fcf0
+github.com/gin-gonic/gin.LoggerWithConfig({0x0, {0x0, 0x0}, {0x0, 0x0, 0x0}})
+        /Users/bamcop/go/pkg/mod/github.com/gin-gonic/gin@v1.7.4/logger.go:220 +0x174 fp=0xc00021ff20 sp=0xc00021fea0 pc=0x447ae14
+github.com/gin-gonic/gin.Logger(...)
+        /Users/bamcop/go/pkg/mod/github.com/gin-gonic/gin@v1.7.4/logger.go:184
+main.main()
+        app.go:10 +0x35 fp=0xc00021ff80 sp=0xc00021ff20 pc=0x44a1ef5
+runtime.main()
+        /usr/local/go/src/runtime/proc.go:255 +0x227 fp=0xc00021ffe0 sp=0xc00021ff80 pc=0x4039087
+runtime.goexit()
+        /usr/local/go/src/runtime/asm_amd64.s:1581 +0x1 fp=0xc00021ffe8 sp=0xc00021ffe0 pc=0x4066ac1
+exit status 2
+
